@@ -1041,6 +1041,7 @@ class AudioManager: ObservableObject {
 struct SoundBarView: View {
     @StateObject private var audioManager = AudioManager.shared
     @State private var currentlyPlaying: Int?
+    @State private var isUserPremium: Bool = false // Premium kullanıcı kontrolü
     
     var body: some View {
         NavigationView {
@@ -1054,7 +1055,12 @@ struct SoundBarView: View {
                     LazyVGrid(columns: [GridItem(.flexible())], spacing: 15) {
                         ForEach(allBrainrots) { item in
                             Button(action: {
-                                playSound(for: item)
+                                if item.id == 1 || isUserPremium {
+                                    playSound(for: item)
+                                } else {
+                                    // BURASI ÇALIŞACAK
+                                    print("Premium özellik!")
+                                }
                             }) {
                                 HStack(spacing: 15) {
                                     Image(item.imageName)
@@ -1063,25 +1069,37 @@ struct SoundBarView: View {
                                         .frame(width: 80, height: 80)
                                         .clipShape(RoundedRectangle(cornerRadius: 15))
                                         .shadow(radius: 5)
+                                        .overlay(
+                                            Group {
+                                                if !isUserPremium && item.id > 1 {
+                                                    Color.black.opacity(0.4)
+                                                        .clipShape(RoundedRectangle(cornerRadius: 15))
+                                                    Image(systemName: "lock.fill")
+                                                        .font(.system(size: 30))
+                                                        .foregroundColor(.white)
+                                                }
+                                            }
+                                        )
                                     
                                     Text(item.name)
                                         .font(.system(size: 18, weight: .semibold))
-                                        .foregroundColor(.black.opacity(0.6))
+                                        .foregroundColor(!isUserPremium && item.id > 1 ? .black : .gray)
                                     
                                     Spacer()
                                     
                                     Image(systemName: currentlyPlaying == item.id ? "pause.circle.fill" : "play.circle.fill")
                                         .font(.system(size: 30))
-                                        .foregroundColor(.white)
+                                        .foregroundColor(!isUserPremium && item.id > 1 ? .gray : .white)
                                 }
                                 .padding()
                                 .background(Color.white.opacity(0.2))
                                 .cornerRadius(20)
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 20)
-                                        .stroke(currentlyPlaying == item.id ? Color.white : Color.clear, lineWidth: 2)
+                                        .stroke(currentlyPlaying == item.id ? Color.purple : Color.clear, lineWidth: 2)
                                 )
                             }
+                            .disabled(!isUserPremium && item.id > 1)
                         }
                     }
                     .padding()
