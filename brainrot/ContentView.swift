@@ -993,7 +993,116 @@ struct SpeedQuizView: View {
     }
 }
 
-struct ContentView: View {
+class AudioManager: ObservableObject {
+    static let shared = AudioManager()
+    @Published var isPlaying = false
+    @Published var player: AVAudioPlayer?
+    
+    func startPlayback() {
+        guard let path = Bundle.main.path(forResource: "background", ofType: "mp3") else { return }
+        do {
+            player = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: path))
+            player?.numberOfLoops = -1 // Sonsuz döngü
+            player?.play()
+            isPlaying = true
+        } catch {
+            print("Error playing sound: \(error.localizedDescription)")
+        }
+    }
+    
+    func togglePlayback() {
+        if isPlaying {
+            player?.pause()
+        } else {
+            player?.play()
+        }
+        isPlaying.toggle()
+    }
+    
+    func stopSound() {
+        player?.stop()
+        player = nil
+        isPlaying = false
+    }
+    
+    func playSound(fileName: String) {
+        stopSound()
+        guard let path = Bundle.main.path(forResource: fileName, ofType: "mp3") else { return }
+        do {
+            player = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: path))
+            player?.play()
+            isPlaying = true
+        } catch {
+            print("Error playing sound: \(error.localizedDescription)")
+        }
+    }
+}
+
+struct SoundBarView: View {
+    @StateObject private var audioManager = AudioManager.shared
+    @State private var currentlyPlaying: Int?
+    
+    var body: some View {
+        NavigationView {
+            ZStack {
+                LinearGradient(gradient: Gradient(colors: [.orange, .white]),
+                             startPoint: .topLeading,
+                             endPoint: .bottomTrailing)
+                    .ignoresSafeArea()
+                
+                ScrollView {
+                    LazyVGrid(columns: [GridItem(.flexible())], spacing: 15) {
+                        ForEach(allBrainrots) { item in
+                            Button(action: {
+                                playSound(for: item)
+                            }) {
+                                HStack(spacing: 15) {
+                                    Image(item.imageName)
+                                        .resizable()
+                                        .scaledToFill()
+                                        .frame(width: 80, height: 80)
+                                        .clipShape(RoundedRectangle(cornerRadius: 15))
+                                        .shadow(radius: 5)
+                                    
+                                    Text(item.name)
+                                        .font(.system(size: 18, weight: .semibold))
+                                        .foregroundColor(.black.opacity(0.6))
+                                    
+                                    Spacer()
+                                    
+                                    Image(systemName: currentlyPlaying == item.id ? "pause.circle.fill" : "play.circle.fill")
+                                        .font(.system(size: 30))
+                                        .foregroundColor(.white)
+                                }
+                                .padding()
+                                .background(Color.white.opacity(0.2))
+                                .cornerRadius(20)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 20)
+                                        .stroke(currentlyPlaying == item.id ? Color.white : Color.clear, lineWidth: 2)
+                                )
+                            }
+                        }
+                    }
+                    .padding()
+                }
+                .navigationTitle("Sound Bar")
+            }
+        }
+    }
+    
+    private func playSound(for item: BrainrotItem) {
+        if currentlyPlaying == item.id {
+            audioManager.stopSound()
+            currentlyPlaying = nil
+        } else {
+            audioManager.playSound(fileName: item.soundName)
+            currentlyPlaying = item.id
+        }
+    }
+}
+
+struct QuizView: View {
     @StateObject private var audioManager = AudioManager.shared
     @State private var showSpeedQuizTimer = false
     @State private var showSpeedQuiz = false
@@ -1008,18 +1117,6 @@ struct ContentView: View {
                     .ignoresSafeArea()
                 
                 VStack(spacing: 30) {
-                    HStack {
-                        Spacer()
-                        Button(action: {
-                            audioManager.togglePlayback()
-                        }) {
-                            Image(systemName: audioManager.isPlaying ? "speaker.wave.2.fill" : "speaker.slash.fill")
-                                .font(.system(size: 30))
-                                .foregroundColor(.white)
-                                .padding()
-                        }
-                    }
-                    
                     Image("logo")
                         .resizable()
                         .scaledToFit()
@@ -1051,7 +1148,6 @@ struct ContentView: View {
                 }
                 .padding()
                 
-                // Speed Quiz Timer Overlay
                 if showSpeedQuizTimer {
                     SpeedQuizTimerView(
                         onSelectTime: { seconds in
@@ -1069,9 +1165,36 @@ struct ContentView: View {
                 SpeedQuizView(timeLimit: selectedTimeLimit)
             }
         }
+    }
+}
+
+struct MainTabView: View {
+    @StateObject private var audioManager = AudioManager.shared
+    
+    var body: some View {
+        TabView {
+            QuizView()
+                .tabItem {
+                    Image(systemName: "gamecontroller.fill")
+                    Text("Quiz")
+                }
+            
+            SoundBarView()
+                .tabItem {
+                    Image(systemName: "music.note.list")
+                    Text("Sound Bar")
+                }
+        }
+        .tint(.purple)
         .onAppear {
             audioManager.startPlayback()
         }
+    }
+}
+
+struct ContentView: View {
+    var body: some View {
+        MainTabView()
     }
 }
 
