@@ -83,7 +83,7 @@ struct StartQuizView: View {
     var body: some View {
         ZStack {
             // Gradient Background
-            LinearGradient(gradient: Gradient(colors: [.purple, .pink.opacity(0.7)]),
+            LinearGradient(gradient: Gradient(colors: [.purple, .pink.opacity(0.3)]),
                          startPoint: .topLeading,
                          endPoint: .bottomTrailing)
                 .ignoresSafeArea()
@@ -387,7 +387,7 @@ struct QuizProView: View {
     
     var body: some View {
         ZStack {
-            LinearGradient(gradient: Gradient(colors: [.purple, .pink.opacity(0.7)]),
+            LinearGradient(gradient: Gradient(colors: [.green, .pink.opacity(0.4)]),
                          startPoint: .topLeading,
                          endPoint: .bottomTrailing)
                 .ignoresSafeArea()
@@ -724,7 +724,7 @@ struct SpeedQuizView: View {
     
     var body: some View {
         ZStack {
-            LinearGradient(gradient: Gradient(colors: [.purple, .pink.opacity(0.7)]),
+            LinearGradient(gradient: Gradient(colors: [.orange, .pink.opacity(0.4)]),
                          startPoint: .topLeading,
                          endPoint: .bottomTrailing)
                 .ignoresSafeArea()
