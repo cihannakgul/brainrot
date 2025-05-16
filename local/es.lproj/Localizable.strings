@@ -5,3 +5,34 @@
   Created by Cihan Akgül on 16.05.2025.
   
 */
+"soundbar" = "Barra de Sonido";
+"quiz" = "Cuestionario";
+"startagain" = "Empezar de Nuevo";
+"timesup" = "¡Se acabó el tiempo!";
+"gameover" = "¡Juego Terminado!";
+"name" = "Nombre: ";
+"sectimelim" = "Límite de Tiempo Seleccionado";
+"noads" = "Sin Anuncios";
+"intro3" = "¡La Soundboard y los sonidos de memes están aquí!";
+"descp3" = "Absurdo, caótico y 100% digno de meme. Tu nueva soundboard favorita.";
+"intro2" = "¿Crees conocer tu Brainrot?";
+"descp2" = "Haz el cuestionario y demuestra que dominas el caos italiano desatado.";
+"intro1" = "El Cuestionario y Soundboard Definitivo del Brainrot Italiano";
+"descp1" = "Juega. Ríe. Luego haz el quiz. ¿Puedes soportar la experiencia completa del brainrot?";
+
+"paywall1" = "Sin Suscripción";
+"paywall2" = "¡Pro de por Vida es Tuyo!";
+"paywall3" = "Desbloquea todas las funciones";
+"paywall4" = "Desbloquea la Soundboard";
+"paywall5" = "Pistas Ilimitadas";
+"next" = "Siguiente";
+
+"autorenew" = "Renovación Automática";
+"privacy" = "Privacidad*";
+"terms" = "Términos*";
+"restore" = "Restaurar*";
+"dismiss" = "Cerrar";
+
+"pagetitle1" = "MAESTRO DEL QUIZ (Adivina por Nombre)";
+"pagetitle2" = "QUIZ RÁPIDO - SENSEI";
+"pagetitle3" = "QUIZ PRO (Adivina por Imagen)";

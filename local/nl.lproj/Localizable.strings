@@ -5,3 +5,34 @@
   Created by Cihan Akgül on 16.05.2025.
   
 */
+"soundbar" = "Soundbar";
+"quiz" = "Quiz";
+"startagain" = "Opnieuw Beginnen";
+"timesup" = "Tijd is om!";
+"gameover" = "Game Over!";
+"name" = "Naam: ";
+"sectimelim" = "Geselecteerde Tijdslimiet";
+"noads" = "Geen Advertenties";
+"intro3" = "Soundboard & Meme-geluiden zijn hier!";
+"descp3" = "Absurd, chaotisch en 100% meme-waardig. Dit is je nieuwe favoriete soundboard.";
+"intro2" = "Denk je dat je je Brainrot kent?";
+"descp2" = "Doe de quiz en bewijs dat je vloeiend bent in losgeslagen Italiaanse chaos.";
+"intro1" = "De Ultieme Italiaanse Brainrot Quiz & Soundboard";
+"descp1" = "Speel. Lach. Test jezelf met de quiz. Kun jij de volledige brainrot aan?";
+
+"paywall1" = "Geen Abonnement";
+"paywall2" = "Lifetime Pro is van jou!";
+"paywall3" = "Ontgrendel alle functies";
+"paywall4" = "Ontgrendel Soundboard";
+"paywall5" = "Oneindige Hint";
+"next" = "Volgende";
+
+"autorenew" = "Automatisch Verlengen";
+"privacy" = "Privacy*";
+"terms" = "Voorwaarden*";
+"restore" = "Herstellen*";
+"dismiss" = "Sluiten";
+
+"pagetitle1" = "QUIZMEESTER (Raad met Naam)";
+"pagetitle2" = "QUIZ SNELHEID - SENSEI";
+"pagetitle3" = "QUIZ PRO (Raad met Afbeelding)";

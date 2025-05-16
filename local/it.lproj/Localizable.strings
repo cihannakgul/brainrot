@@ -5,3 +5,34 @@
   Created by Cihan Akgül on 16.05.2025.
   
 */
+"soundbar" = "Barra Sonora";
+"quiz" = "Quiz";
+"startagain" = "Ricomincia";
+"timesup" = "Tempo scaduto!";
+"gameover" = "Gioco Finito!";
+"name" = "Nome: ";
+"sectimelim" = "Limite di Tempo Selezionato";
+"noads" = "Niente Pubblicità";
+"intro3" = "La soundboard e i suoni meme sono qui!";
+"descp3" = "Assurdo, caotico e 100% da meme. Questa sarà la tua nuova soundboard preferita.";
+"intro2" = "Credi di conoscere il tuo Brainrot?";
+"descp2" = "Fai il quiz e dimostra di essere fluente nel caos italiano più folle.";
+"intro1" = "Il Quiz e Soundboard Brainrot Italiano Definitivo";
+"descp1" = "Gioca. Ridi. Poi mettiti alla prova. Riesci a gestire il vero brainrot?";
+
+"paywall1" = "Nessun Abbonamento";
+"paywall2" = "Pro a Vita è Tuo!";
+"paywall3" = "Sblocca tutte le funzionalità";
+"paywall4" = "Sblocca la Soundboard";
+"paywall5" = "Suggerimenti Illimitati";
+"next" = "Avanti";
+
+"autorenew" = "Rinnovo Automatico";
+"privacy" = "Privacy*";
+"terms" = "Termini*";
+"restore" = "Ripristina*";
+"dismiss" = "Chiudi";
+
+"pagetitle1" = "QUIZ MASTER (Indovina con il Nome)";
+"pagetitle2" = "QUIZ VELOCE - SENSEI";
+"pagetitle3" = "QUIZ PRO (Indovina con l’Immagine)";

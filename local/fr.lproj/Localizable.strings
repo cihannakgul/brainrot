@@ -5,3 +5,34 @@
   Created by Cihan Akgül on 16.05.2025.
   
 */
+"soundbar" = "Barre de Son";
+"quiz" = "Quiz";
+"startagain" = "Recommencer";
+"timesup" = "Temps écoulé !";
+"gameover" = "Jeu Terminé !";
+"name" = "Nom : ";
+"sectimelim" = "Limite de Temps Sélectionnée";
+"noads" = "Sans Publicité";
+"intro3" = "La Soundboard & les sons de mèmes sont là !";
+"descp3" = "Absurde, chaotique et 100% digne d’un mème. Voici votre nouvelle soundboard préférée.";
+"intro2" = "Tu Penses Connaître ton Brainrot ?";
+"descp2" = "Fais le quiz et prouve que tu maîtrises le chaos italien déchaîné.";
+"intro1" = "Le Quiz & Soundboard Brainrot Italien Ultime";
+"descp1" = "Joue. Ris. Puis teste-toi. Peux-tu supporter l'expérience complète du brainrot ?";
+
+"paywall1" = "Pas d’Abonnement";
+"paywall2" = "Le Pro à Vie est à Toi !";
+"paywall3" = "Débloque toutes les fonctionnalités";
+"paywall4" = "Débloque la Soundboard";
+"paywall5" = "Indice Illimité";
+"next" = "Suivant";
+
+"autorenew" = "Renouvellement Auto";
+"privacy" = "Confidentialité*";
+"terms" = "Conditions*";
+"restore" = "Restaurer*";
+"dismiss" = "Fermer";
+
+"pagetitle1" = "MAÎTRE DU QUIZ (Devine avec le Nom)";
+"pagetitle2" = "QUIZ RAPIDE - SENSEI";
+"pagetitle3" = "QUIZ PRO (Devine avec l’Image)";
