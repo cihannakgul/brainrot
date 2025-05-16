@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0873188B2DD7EF2C0025A01D /* RatingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0873188A2DD7EF2A0025A01D /* RatingManager.swift */; };
 		08E38ECC2DCABFCB005C37AC /* brainrotApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E38EC92DCABFCB005C37AC /* brainrotApp.swift */; };
 		08E38ECD2DCABFCB005C37AC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E38ECA2DCABFCB005C37AC /* ContentView.swift */; };
 		08E38ECE2DCABFCB005C37AC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08E38EC62DCABFCB005C37AC /* Preview Assets.xcassets */; };
@@ -70,6 +71,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0873188A2DD7EF2A0025A01D /* RatingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingManager.swift; sourceTree = "<group>"; };
 		08E38EB52DCABFC5005C37AC /* brainrot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = brainrot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08E38EC62DCABFCB005C37AC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		08E38EC82DCABFCB005C37AC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -668,6 +670,7 @@
 		08E38F882DD6ADAE005C37AC /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				0873188A2DD7EF2A0025A01D /* RatingManager.swift */,
 				08E38F9B2DD7C4D1005C37AC /* Onboarding.swift */,
 				08E38F912DD6B145005C37AC /* Color.swift */,
 				08E38F902DD6B12A005C37AC /* AppSettings.swift */,
@@ -823,6 +826,7 @@
 			files = (
 				08E38F932DD7C0C0005C37AC /* Constants.swift in Sources */,
 				08E38F942DD7C0C0005C37AC /* UserViewModel.swift in Sources */,
+				0873188B2DD7EF2C0025A01D /* RatingManager.swift in Sources */,
 				08E38F952DD7C0C0005C37AC /* AppSettings.swift in Sources */,
 				08E38F962DD7C0C0005C37AC /* PaywallView.swift in Sources */,
 				08E38F972DD7C0C0005C37AC /* AdMobBannerView.swift in Sources */,

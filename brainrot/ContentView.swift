@@ -78,7 +78,10 @@ struct StartQuizView: View {
     @AppStorage("maxPoints") private var maxPoints = 0
     @StateObject var interstitialAdManager = InterstitialAdsManager()
     @State private var isShowingPaywall = false
-
+    @State private var showRatingAlert = false
+        private let ratingManager = RatingManager.shared
+  
+    
     // Shiny effect for No Ads button
     @State private var shineOffset: CGFloat = -100
     
@@ -188,7 +191,20 @@ struct StartQuizView: View {
                             }
                             
                             Button(action: {
-                                isHintUsed.toggle()
+                                
+                                if !UserViewModel.shared.subscriptionActive {
+                                    if AppSettings.shared.messageCount < AppSettings.shared.maxMessageCount
+                                     {
+                                        interstitialAdManager.displayInterstitialAd()
+                                         AppSettings.shared.messageCount += 1
+                                        UserDefaults.standard.set(AppSettings.shared.messageCount, forKey: "messageCount")
+                                        isHintUsed.toggle()
+                                     }
+                                    else {
+                                        isShowingPaywall = true
+                                    }
+                                }
+                                
                             }) {
                                 Image(systemName: "lightbulb.fill")
                                     .font(.system(size: 30))
@@ -294,7 +310,15 @@ struct StartQuizView: View {
             }
         }
         .navigationBarHidden(true)
+        .ratingAlert(isPresented: $showRatingAlert)
+
         .onAppear {
+            if ratingManager.checkIfUserCanReview() {
+                           showRatingAlert = true
+                       } else {
+                           // İsteğe bağlı: Değerlendirme yapılamaz durumunda ne yapılacağı
+                           print("Değerlendirme koşulları henüz sağlanmıyor")
+                       }
             setupQuiz()
             interstitialAdManager.loadInterstitialAd()
         }
@@ -403,6 +427,9 @@ struct QuizProView: View {
     @State private var shineOffset: CGFloat = -100
     @State private var isShowingPaywall = false
 
+    @State private var showRatingAlert = false
+        private let ratingManager = RatingManager.shared
+    
     var body: some View {
         ZStack {
             LinearGradient(gradient: Gradient(colors: [.green, .pink.opacity(0.4)]),
@@ -496,7 +523,21 @@ struct QuizProView: View {
                             }
                             
                             Button(action: {
-                                isHintUsed.toggle()
+
+
+                                if !UserViewModel.shared.subscriptionActive {
+                                    if AppSettings.shared.messageCount < AppSettings.shared.maxMessageCount
+                                     {
+                                        interstitialAdManager.displayInterstitialAd()
+                                         AppSettings.shared.messageCount += 1
+                                        UserDefaults.standard.set(AppSettings.shared.messageCount, forKey: "messageCount")
+                                        isHintUsed.toggle()
+                                     }
+                                    else {
+                                        isShowingPaywall = true
+                                    }
+                                }
+
                             }) {
                                 Image(systemName: "lightbulb.fill")
                                     .font(.system(size: 30))
@@ -587,8 +628,16 @@ struct QuizProView: View {
                 .padding()
             }
         }
+        .ratingAlert(isPresented: $showRatingAlert)
+
         .navigationBarHidden(true)
         .onAppear {
+            if ratingManager.checkIfUserCanReview() {
+                          showRatingAlert = true
+                      } else {
+                          // İsteğe bağlı: Değerlendirme yapılamaz durumunda ne yapılacağı
+                          print("Değerlendirme koşulları henüz sağlanmıyor")
+                      }
             interstitialAdManager.loadInterstitialAd()
             setupQuiz()
         }
@@ -758,6 +807,8 @@ struct SpeedQuizView: View {
     @State private var shineOffset: CGFloat = -100
     @State private var isShowingPaywall = false
 
+    @State private var showRatingAlert = false
+        private let ratingManager = RatingManager.shared
     
     init(timeLimit: Int) {
         self.timeLimit = timeLimit
@@ -876,8 +927,18 @@ struct SpeedQuizView: View {
                             }
                             
                             Button(action: {
-                                isHintUsed.toggle()
-                            }) {
+                                if !UserViewModel.shared.subscriptionActive {
+                                    if AppSettings.shared.messageCount < AppSettings.shared.maxMessageCount
+                                     {
+                                        interstitialAdManager.displayInterstitialAd()
+                                         AppSettings.shared.messageCount += 1
+                                        UserDefaults.standard.set(AppSettings.shared.messageCount, forKey: "messageCount")
+                                        isHintUsed.toggle()
+                                     }
+                                    else {
+                                        isShowingPaywall = true
+                                    }
+                                }                            }) {
                                 Image(systemName: "lightbulb.fill")
                                     .font(.system(size: 30))
                                     .foregroundColor(isHintUsed ? .yellow : .white)
@@ -990,7 +1051,16 @@ struct SpeedQuizView: View {
             PaywallView(isPresented: $isShowingPaywall)
         })
         .navigationBarHidden(true)
+        .ratingAlert(isPresented: $showRatingAlert)
+
         .onAppear {
+            if ratingManager.checkIfUserCanReview() {
+                          showRatingAlert = true
+                      } else {
+                          // İsteğe bağlı: Değerlendirme yapılamaz durumunda ne yapılacağı
+                          print("Değerlendirme koşulları henüz sağlanmıyor")
+                      }
+            
             setupQuiz()
             interstitialAdManager.loadInterstitialAd()
 
@@ -1217,7 +1287,9 @@ struct QuizView: View {
     @State private var showSpeedQuizTimer = false
     @State private var showSpeedQuiz = false
     @State private var selectedTimeLimit: Int = 0
-
+    
+ 
+    
     var body: some View {
         NavigationStack {
             ZStack {
@@ -1241,6 +1313,7 @@ struct QuizView: View {
                  
                     
                     NavigationLink(destination: StartQuizView()) {
+                      
                         QuizButton(title: NSLocalizedString("pagetitle1", comment: ""), color: .orange)
                     }
                     .padding(.bottom, 5)

@@ -13,7 +13,7 @@ import Combine
 class AppSettings: ObservableObject {
     static let shared = AppSettings()
 
-    @Published var maxMessageCount: Int = 3 // TO DO BEFORE PUBLISH
+    @Published var maxMessageCount: Int = 2 // TO DO BEFORE PUBLISH
     @Published var messageCount: Int = 0
     @Published var userModel = UserViewModel.shared
 
