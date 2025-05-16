@@ -76,7 +76,9 @@ struct StartQuizView: View {
     @State private var currentPoints = 0
     @State private var isHintUsed = false
     @AppStorage("maxPoints") private var maxPoints = 0
-    
+    @StateObject var interstitialAdManager = InterstitialAdsManager()
+    @State private var isShowingPaywall = false
+
     // Shiny effect for No Ads button
     @State private var shineOffset: CGFloat = -100
     
@@ -115,38 +117,44 @@ struct StartQuizView: View {
                         .background(Color.white.opacity(0.2))
                         .cornerRadius(20)
                         
-                        // No Ads Button
-                        Button(action: {
-                            // No Ads action
-                        }) {
-                            HStack(spacing: 6) {
-                                Image(systemName: "crown.fill")
-                                    .foregroundColor(.yellow)
-                                Text("No Ads")
-                                    .font(.system(size: 16, weight: .bold))
-                                    .foregroundColor(.white)
-                            }
-                            .padding(.horizontal, 12)
-                            .padding(.vertical, 8)
-                            .background(
-                                ZStack {
-                                    Color.purple.opacity(0.3)
-                                    // Shiny effect
-                                    Rectangle()
-                                        .fill(Color.white.opacity(0.3))
-                                        .rotationEffect(.degrees(45))
-                                        .frame(width: 30)
-                                        .offset(x: shineOffset)
+                         if !UserViewModel.shared.subscriptionActive {
+                            Button(action: {
+                                
+                                isShowingPaywall = true
+                            }) {
+                                HStack(spacing: 6) {
+                                    Image(systemName: "crown.fill")
+                                        .foregroundColor(.yellow)
+                                    Text(NSLocalizedString("noads", comment: ""))
+                                        .font(.system(size: 16, weight: .bold))
+                                        .foregroundColor(.white)
                                 }
-                            )
-                            .clipShape(Capsule())
-                            .overlay(Capsule().stroke(Color.white.opacity(0.5), lineWidth: 1))
-                        }
-                        .onAppear {
-                            withAnimation(.linear(duration: 2).repeatForever(autoreverses: false)) {
-                                shineOffset = 100
+                                .padding(.horizontal, 12)
+                                .padding(.vertical, 8)
+                                .background(
+                                    ZStack {
+                                        Color.purple.opacity(0.3)
+                                        // Shiny effect
+                                        Rectangle()
+                                            .fill(Color.white.opacity(0.3))
+                                            .rotationEffect(.degrees(45))
+                                            .frame(width: 30)
+                                            .offset(x: shineOffset)
+                                    }
+                                )
+                                .clipShape(Capsule())
+                                .overlay(Capsule().stroke(Color.white.opacity(0.5), lineWidth: 1))
                             }
+                            .onAppear {
+                                withAnimation(.linear(duration: 2).repeatForever(autoreverses: false)) {
+                                    shineOffset = 100
+                                }
+                            }
+                            .fullScreenCover(isPresented: $isShowingPaywall, content: {
+                                PaywallView(isPresented: $isShowingPaywall)
+                            })
                         }
+                   
                     }
                     .padding()
                     
@@ -155,7 +163,7 @@ struct StartQuizView: View {
                     // Question Name and Sound Button
                     VStack(spacing: 16) {
                         HStack {
-                            Text("Brainrot:")
+                            Text(NSLocalizedString("name", comment: ""))
                                 .font(.system(size: 24, weight: .bold))
                                 .foregroundColor(.white.opacity(0.8))
                             
@@ -198,6 +206,9 @@ struct StartQuizView: View {
                     HStack(spacing: 12) {
                         ForEach(options, id: \.item.id) { option in
                             Button(action: {
+                                if !UserViewModel.shared.subscriptionActive {
+                                    interstitialAdManager.displayInterstitialAd()
+                                }
                                 checkAnswer(option.isCorrect, optionId: option.item.id)
                             }) {
                                 ZStack {
@@ -231,6 +242,10 @@ struct StartQuizView: View {
                     }
                     .padding(.horizontal)
                  Spacer()
+                    if !UserViewModel.shared.subscriptionActive {
+                        AdMobBannerView()
+                            .frame(width: 320, height: 50, alignment: .center)
+                    }
                 }
             } else {
                 ProgressView()
@@ -245,7 +260,7 @@ struct StartQuizView: View {
                 
                 VStack(spacing: 24) {
                     VStack(spacing: 30) {
-                        Text("Game Over!")
+                        Text(NSLocalizedString("gameover", comment: ""))
                             .font(.system(size: 36, weight: .bold))
                             .foregroundColor(.purple)
                         
@@ -265,7 +280,7 @@ struct StartQuizView: View {
                         currentPoints = 0
                         setupQuiz()
                     }) {
-                        Text("Start Again")
+                        Text(NSLocalizedString("startagain", comment: ""))
                             .font(.title2)
                             .fontWeight(.bold)
                             .foregroundColor(.white)
@@ -281,6 +296,7 @@ struct StartQuizView: View {
         .navigationBarHidden(true)
         .onAppear {
             setupQuiz()
+            interstitialAdManager.loadInterstitialAd()
         }
     }
     
@@ -381,10 +397,12 @@ struct QuizProView: View {
     @State private var selectedAnswerID: Int? = nil
     @State private var showStartAgain = false
     @State private var currentPoints = 0
+    @StateObject var interstitialAdManager = InterstitialAdsManager()
     @State private var isHintUsed = false
     @AppStorage("maxPoints") private var maxPoints = 0
     @State private var shineOffset: CGFloat = -100
-    
+    @State private var isShowingPaywall = false
+
     var body: some View {
         ZStack {
             LinearGradient(gradient: Gradient(colors: [.green, .pink.opacity(0.4)]),
@@ -417,34 +435,43 @@ struct QuizProView: View {
                         .padding(.vertical, 8)
                         .background(Color.white.opacity(0.2))
                         .cornerRadius(20)
-                        
-                        Button(action: {}) {
-                            HStack(spacing: 6) {
-                                Image(systemName: "crown.fill")
-                                    .foregroundColor(.yellow)
-                                Text("No Ads")
-                                    .font(.system(size: 16, weight: .bold))
-                                    .foregroundColor(.white)
-                            }
-                            .padding(.horizontal, 12)
-                            .padding(.vertical, 8)
-                            .background(
-                                ZStack {
-                                    Color.purple.opacity(0.3)
-                                    Rectangle()
-                                        .fill(Color.white.opacity(0.3))
-                                        .rotationEffect(.degrees(45))
-                                        .frame(width: 30)
-                                        .offset(x: shineOffset)
+                        if !UserViewModel.shared.subscriptionActive {
+                            Button(action: {
+                                isShowingPaywall = true
+                                
+                            }) {
+                                HStack(spacing: 6) {
+                                    Image(systemName: "crown.fill")
+                                        .foregroundColor(.yellow)
+                                    Text(NSLocalizedString("noads", comment: ""))
+                                        .font(.system(size: 16, weight: .bold))
+                                        .foregroundColor(.white)
                                 }
-                            )
-                            .clipShape(Capsule())
-                            .overlay(Capsule().stroke(Color.white.opacity(0.5), lineWidth: 1))
-                        }
-                        .onAppear {
-                            withAnimation(.linear(duration: 2).repeatForever(autoreverses: false)) {
-                                shineOffset = 100
+                                .padding(.horizontal, 12)
+                                .padding(.vertical, 8)
+                                .background(
+                                    ZStack {
+                                        Color.purple.opacity(0.3)
+                                        Rectangle()
+                                            .fill(Color.white.opacity(0.3))
+                                            .rotationEffect(.degrees(45))
+                                            .frame(width: 30)
+                                            .offset(x: shineOffset)
+                                    }
+                                )
+                                .clipShape(Capsule())
+                                .overlay(Capsule().stroke(Color.white.opacity(0.5), lineWidth: 1))
                             }
+                        }
+                   
+                       
+                    }
+                    .fullScreenCover(isPresented: $isShowingPaywall, content: {
+                        PaywallView(isPresented: $isShowingPaywall)
+                    })
+                    .onAppear {
+                        withAnimation(.linear(duration: 2).repeatForever(autoreverses: false)) {
+                            shineOffset = 100
                         }
                     }
                     .padding()
@@ -485,6 +512,11 @@ struct QuizProView: View {
                     VStack(spacing: 16) {
                         ForEach(options, id: \.item.id) { option in
                             Button(action: {
+                                
+                                if !UserViewModel.shared.subscriptionActive {
+                                    interstitialAdManager.displayInterstitialAd()
+
+                                }
                                 checkAnswer(option.isCorrect, optionId: option.item.id)
                             }) {
                                 Text(option.item.name)
@@ -505,6 +537,10 @@ struct QuizProView: View {
                     .padding(.horizontal)
                     
                     Spacer()
+                    if !UserViewModel.shared.subscriptionActive {
+                        AdMobBannerView()
+                            .frame(width: 320, height: 50, alignment: .center)
+                    }
                 }
             } else {
                 ProgressView()
@@ -518,7 +554,7 @@ struct QuizProView: View {
                 
                 VStack(spacing: 24) {
                     VStack(spacing: 30) {
-                        Text("Game Over!")
+                        Text(NSLocalizedString("gameover", comment: ""))
                             .font(.system(size: 36, weight: .bold))
                             .foregroundColor(.purple)
                         
@@ -538,7 +574,7 @@ struct QuizProView: View {
                         currentPoints = 0
                         setupQuiz()
                     }) {
-                        Text("Start Again")
+                        Text(NSLocalizedString("startagain", comment: ""))
                             .font(.title2)
                             .fontWeight(.bold)
                             .foregroundColor(.white)
@@ -553,6 +589,7 @@ struct QuizProView: View {
         }
         .navigationBarHidden(true)
         .onAppear {
+            interstitialAdManager.loadInterstitialAd()
             setupQuiz()
         }
     }
@@ -646,7 +683,7 @@ struct QuizProView: View {
 struct SpeedQuizTimerView: View {
     var onSelectTime: (Int) -> Void
     var onDismiss: () -> Void
-    
+
     var body: some View {
         ZStack {
             Color.black.opacity(0.7)
@@ -656,7 +693,7 @@ struct SpeedQuizTimerView: View {
                 }
             
             VStack(spacing: 20) {
-                Text("Select Time Limit")
+                Text(NSLocalizedString("sectimelim", comment: ""))
                     .font(.system(size: 32, weight: .bold))
                     .foregroundColor(.white)
                     .padding(.top, 30)
@@ -696,6 +733,7 @@ struct SpeedQuizTimerView: View {
             )
             .shadow(radius: 20)
         }
+      
     }
 }
 
@@ -716,6 +754,10 @@ struct SpeedQuizView: View {
     @AppStorage("maxPoints") private var maxPoints = 0
     @State private var remainingTime: Int
     @State private var timer: Timer?
+    @StateObject var interstitialAdManager = InterstitialAdsManager()
+    @State private var shineOffset: CGFloat = -100
+    @State private var isShowingPaywall = false
+
     
     init(timeLimit: Int) {
         self.timeLimit = timeLimit
@@ -770,6 +812,37 @@ struct SpeedQuizView: View {
                         .padding(.vertical, 8)
                         .background(Color.white.opacity(0.2))
                         .cornerRadius(20)
+                        
+                        
+                        if !UserViewModel.shared.subscriptionActive {
+                            Button(action: {
+                                isShowingPaywall = true
+                                
+                            }) {
+                                HStack(spacing: 6) {
+                                    Image(systemName: "crown.fill")
+                                        .foregroundColor(.yellow)
+                                    Text(NSLocalizedString("noads", comment: ""))
+                                        .font(.system(size: 16, weight: .bold))
+                                        .foregroundColor(.white)
+                                }
+                                .padding(.horizontal, 12)
+                                .padding(.vertical, 8)
+                                .background(
+                                    ZStack {
+                                        Color.purple.opacity(0.3)
+                                        Rectangle()
+                                            .fill(Color.white.opacity(0.3))
+                                            .rotationEffect(.degrees(45))
+                                            .frame(width: 30)
+                                            .offset(x: shineOffset)
+                                    }
+                                )
+                                .clipShape(Capsule())
+                                .overlay(Capsule().stroke(Color.white.opacity(0.5), lineWidth: 1))
+                            }
+                        }
+                        
                     }
                     .padding()
                     
@@ -778,7 +851,7 @@ struct SpeedQuizView: View {
                     // Question Name and Sound Button
                     VStack(spacing: 16) {
                         HStack {
-                            Text("Brainrot:")
+                            Text(NSLocalizedString("Name: ", comment: ""))
                                 .font(.system(size: 24, weight: .bold))
                                 .foregroundColor(.white.opacity(0.8))
                             
@@ -819,6 +892,10 @@ struct SpeedQuizView: View {
                     HStack(spacing: 12) {
                         ForEach(options, id: \.item.id) { option in
                             Button(action: {
+                                if !UserViewModel.shared.subscriptionActive {
+                                    interstitialAdManager.displayInterstitialAd()
+
+                                }
                                 checkAnswer(option.isCorrect, optionId: option.item.id)
                             }) {
                                 ZStack {
@@ -851,6 +928,10 @@ struct SpeedQuizView: View {
                     .padding(.horizontal)
                     
                     Spacer()
+                    if !UserViewModel.shared.subscriptionActive {
+                        AdMobBannerView()
+                            .frame(width: 320, height: 50, alignment: .center)
+                    }
                 }
             } else {
                 ProgressView()
@@ -865,14 +946,15 @@ struct SpeedQuizView: View {
                 
                 VStack(spacing: 24) {
                     VStack(spacing: 30) {
-                        Text("Game Over!")
+                        Text(NSLocalizedString("gameover", comment: ""))
                             .font(.system(size: 36, weight: .bold))
                             .foregroundColor(.purple)
                         
                         VStack(spacing: 16) {
                             PointRow(title: "Your Points:", points: currentPoints)
                             PointRow(title: "Max Points:", points: maxPoints)
-                            Text("Time's up!")
+                            Text(NSLocalizedString("timesup", comment: ""))
+
                                 .font(.system(size: 24, weight: .semibold))
                                 .foregroundColor(.gray)
                         }
@@ -890,7 +972,8 @@ struct SpeedQuizView: View {
                         setupQuiz()
                         startTimer()
                     }) {
-                        Text("Start Again")
+                        Text(NSLocalizedString("startagain", comment: ""))
+
                             .font(.title2)
                             .fontWeight(.bold)
                             .foregroundColor(.white)
@@ -903,9 +986,14 @@ struct SpeedQuizView: View {
                 .padding()
             }
         }
+        .fullScreenCover(isPresented: $isShowingPaywall, content: {
+            PaywallView(isPresented: $isShowingPaywall)
+        })
         .navigationBarHidden(true)
         .onAppear {
             setupQuiz()
+            interstitialAdManager.loadInterstitialAd()
+
             startTimer()
         }
         .onDisappear {
@@ -1041,8 +1129,9 @@ class AudioManager: ObservableObject {
 struct SoundBarView: View {
     @StateObject private var audioManager = AudioManager.shared
     @State private var currentlyPlaying: Int?
-    @State private var isUserPremium: Bool = false // Premium kullanıcı kontrolü
-    
+ 
+    @State private var isShowingPaywall = false
+
     var body: some View {
         NavigationView {
             ZStack {
@@ -1055,10 +1144,10 @@ struct SoundBarView: View {
                     LazyVGrid(columns: [GridItem(.flexible())], spacing: 15) {
                         ForEach(allBrainrots) { item in
                             Button(action: {
-                                if item.id == 1 || isUserPremium {
+                                if item.id == 1 || UserViewModel.shared.subscriptionActive {
                                     playSound(for: item)
                                 } else {
-                                    // BURASI ÇALIŞACAK
+                                    isShowingPaywall = true
                                     print("Premium özellik!")
                                 }
                             }) {
@@ -1071,7 +1160,7 @@ struct SoundBarView: View {
                                         .shadow(radius: 5)
                                         .overlay(
                                             Group {
-                                                if !isUserPremium && item.id > 1 {
+                                                if !UserViewModel.shared.subscriptionActive && item.id > 1 {
                                                     Color.black.opacity(0.4)
                                                         .clipShape(RoundedRectangle(cornerRadius: 15))
                                                     Image(systemName: "lock.fill")
@@ -1083,13 +1172,13 @@ struct SoundBarView: View {
                                     
                                     Text(item.name)
                                         .font(.system(size: 18, weight: .semibold))
-                                        .foregroundColor(!isUserPremium && item.id > 1 ? .black : .gray)
+                                        .foregroundColor(!UserViewModel.shared.subscriptionActive && item.id > 1 ? .black : .gray)
                                     
                                     Spacer()
                                     
                                     Image(systemName: currentlyPlaying == item.id ? "pause.circle.fill" : "play.circle.fill")
                                         .font(.system(size: 30))
-                                        .foregroundColor(!isUserPremium && item.id > 1 ? .gray : .white)
+                                        .foregroundColor(!UserViewModel.shared.subscriptionActive && item.id > 1 ? .gray : .white)
                                 }
                                 .padding()
                                 .background(Color.white.opacity(0.2))
@@ -1099,13 +1188,16 @@ struct SoundBarView: View {
                                         .stroke(currentlyPlaying == item.id ? Color.purple : Color.clear, lineWidth: 2)
                                 )
                             }
-                            .disabled(!isUserPremium && item.id > 1)
-                        }
+                         }
                     }
                     .padding()
                 }
+                .fullScreenCover(isPresented: $isShowingPaywall, content: {
+                    PaywallView(isPresented: $isShowingPaywall)
+                })
                 .navigationTitle("Sound Bar")
             }
+            
         }
     }
     
@@ -1125,7 +1217,7 @@ struct QuizView: View {
     @State private var showSpeedQuizTimer = false
     @State private var showSpeedQuiz = false
     @State private var selectedTimeLimit: Int = 0
-    
+
     var body: some View {
         NavigationStack {
             ZStack {
@@ -1146,20 +1238,23 @@ struct QuizView: View {
                     Spacer()
                     
                     // Quiz Buttons
-                    Button(action: {
-                        showSpeedQuizTimer = true
-                    }) {
-                        QuizButton(title: "QUIZ SPEED - SENSEI", color: .red)
+                 
+                    
+                    NavigationLink(destination: StartQuizView()) {
+                        QuizButton(title: NSLocalizedString("pagetitle1", comment: ""), color: .orange)
                     }
                     .padding(.bottom, 5)
                     
-                    NavigationLink(destination: StartQuizView()) {
-                        QuizButton(title: "QUIZ MASTER (Guess with Name)", color: .orange)
+                    
+                    Button(action: {
+                        showSpeedQuizTimer = true
+                    }) {
+                        QuizButton(title: NSLocalizedString("pagetitle2", comment: ""), color: .red)
                     }
                     .padding(.bottom, 5)
                     
                     NavigationLink(destination: QuizProView()) {
-                        QuizButton(title: "QUIZ PRO (Guess with Image)", color: .purple)
+                        QuizButton(title: NSLocalizedString("pagetitle3", comment: ""), color: .purple)
                     }
                     
                     Spacer()
@@ -1179,6 +1274,7 @@ struct QuizView: View {
                     )
                 }
             }
+         
             .fullScreenCover(isPresented: $showSpeedQuiz) {
                 SpeedQuizView(timeLimit: selectedTimeLimit)
             }
@@ -1194,13 +1290,13 @@ struct MainTabView: View {
             QuizView()
                 .tabItem {
                     Image(systemName: "gamecontroller.fill")
-                    Text("Quiz")
+                    Text(NSLocalizedString("quiz", comment: ""))
                 }
             
             SoundBarView()
                 .tabItem {
                     Image(systemName: "music.note.list")
-                    Text("Sound Bar")
+                    Text(NSLocalizedString("soundbar", comment: ""))
                 }
         }
         .tint(.purple)

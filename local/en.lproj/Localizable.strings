@@ -1,0 +1,39 @@
+/* 
+  Localizable.strings
+  brainrot
+
+  Created by Cihan Akgül on 16.05.2025.
+  
+*/
+
+"soundbar" = "Sound Bar";
+"quiz" = "Quiz";
+"startagain" = "Start Again";
+"timesup" = "Time's up!";
+"gameover" = "Game Over!";
+"name" = "Name: ";
+"sectimelim" = "Selected Time Limit";
+"noads" = "No Ads";
+"intro3" = "Sounboard & Meme sounds is here!";
+"descp3" = "Absurd, chaotic, and 100% meme-worthy. This is your new favorite soundboard.";
+"intro2" = "Think You Know Your Brainrot?";
+"descp2" = "Take the quiz and prove you’re fluent in unhinged Italian chaos.";
+"intro1" = "The Ultimate Italian Brainrot Quiz & Soundboard";
+"descp1" = "Play. Laugh. Then quiz yourself. Can you handle the full brainrot experience?";
+
+"paywall1" = "No Subscription";
+"paywall2" = "Lifetime Pro is Yours!";
+"paywall3" = "Unlock all features";
+"paywall4" = "Unlock Soundboard";
+"paywall5" = "Limitless Hint";
+"next" = "Next";
+
+"autorenew" = "Auto Renew";
+"privacy" = "Privacy*";
+"terms" = "Terms*";
+"restore" = "Restore*";
+"dismiss" = "Dismiss";
+
+"pagetitle1" = "QUIZ MASTER (Guess with Name)";
+"pagetitle2" = "QUIZ SPEED - SENSEI";
+"pagetitle3" = "QUIZ PRO (Guess with Image)";

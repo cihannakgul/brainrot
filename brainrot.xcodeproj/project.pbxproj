@@ -54,6 +54,19 @@
 		08E38F7D2DD69521005C37AC /* 40m.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 08E38F4A2DD69238005C37AC /* 40m.mp3 */; };
 		08E38F7E2DD69521005C37AC /* 41m.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 08E38F4D2DD69238005C37AC /* 41m.mp3 */; };
 		08E38F7F2DD69521005C37AC /* 42m.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 08E38F502DD69238005C37AC /* 42m.mp3 */; };
+		08E38F822DD6AD6C005C37AC /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 08E38F812DD6AD6C005C37AC /* GoogleMobileAds */; };
+		08E38F852DD6AD9A005C37AC /* ReceiptParser in Frameworks */ = {isa = PBXBuildFile; productRef = 08E38F842DD6AD9A005C37AC /* ReceiptParser */; };
+		08E38F872DD6AD9A005C37AC /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = 08E38F862DD6AD9A005C37AC /* RevenueCat */; };
+		08E38F932DD7C0C0005C37AC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E38F8A2DD6B0B7005C37AC /* Constants.swift */; };
+		08E38F942DD7C0C0005C37AC /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E38F8B2DD6B0CF005C37AC /* UserViewModel.swift */; };
+		08E38F952DD7C0C0005C37AC /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E38F902DD6B12A005C37AC /* AppSettings.swift */; };
+		08E38F962DD7C0C0005C37AC /* PaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E38F8E2DD6B112005C37AC /* PaywallView.swift */; };
+		08E38F972DD7C0C0005C37AC /* AdMobBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E38F8C2DD6B0DD005C37AC /* AdMobBannerView.swift */; };
+		08E38F982DD7C0C0005C37AC /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E38F912DD6B145005C37AC /* Color.swift */; };
+		08E38F992DD7C0C0005C37AC /* PurchasesDelegateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E38F892DD6ADB8005C37AC /* PurchasesDelegateHandler.swift */; };
+		08E38F9A2DD7C0C0005C37AC /* InterstitialAdsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E38F8D2DD6B0EF005C37AC /* InterstitialAdsManager.swift */; };
+		08E38F9C2DD7C4D3005C37AC /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E38F9B2DD7C4D1005C37AC /* Onboarding.swift */; };
+		08E38FA02DD7D516005C37AC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 08E38F9E2DD7D516005C37AC /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -148,6 +161,25 @@
 		08E38F502DD69238005C37AC /* 42m.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 42m.mp3; sourceTree = "<group>"; };
 		08E38F512DD69238005C37AC /* Contents.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Contents.json; sourceTree = "<group>"; };
 		08E38F532DD69238005C37AC /* Contents.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Contents.json; sourceTree = "<group>"; };
+		08E38F892DD6ADB8005C37AC /* PurchasesDelegateHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasesDelegateHandler.swift; sourceTree = "<group>"; };
+		08E38F8A2DD6B0B7005C37AC /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		08E38F8B2DD6B0CF005C37AC /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
+		08E38F8C2DD6B0DD005C37AC /* AdMobBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdMobBannerView.swift; sourceTree = "<group>"; };
+		08E38F8D2DD6B0EF005C37AC /* InterstitialAdsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterstitialAdsManager.swift; sourceTree = "<group>"; };
+		08E38F8E2DD6B112005C37AC /* PaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallView.swift; sourceTree = "<group>"; };
+		08E38F902DD6B12A005C37AC /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
+		08E38F912DD6B145005C37AC /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		08E38F922DD7BEF4005C37AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		08E38F9B2DD7C4D1005C37AC /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
+		08E38F9F2DD7D516005C37AC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		08E38FA12DD7D518005C37AC /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
+		08E38FA22DD7D51B005C37AC /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
+		08E38FA32DD7D51C005C37AC /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		08E38FA42DD7D51C005C37AC /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		08E38FA52DD7D51D005C37AC /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
+		08E38FA62DD7D51E005C37AC /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
+		08E38FA72DD7D51E005C37AC /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		08E38FA82DD7D520005C37AC /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +187,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08E38F852DD6AD9A005C37AC /* ReceiptParser in Frameworks */,
+				08E38F822DD6AD6C005C37AC /* GoogleMobileAds in Frameworks */,
+				08E38F872DD6AD9A005C37AC /* RevenueCat in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -164,6 +199,8 @@
 		08E38EAC2DCABFC5005C37AC = {
 			isa = PBXGroup;
 			children = (
+				08E38F9D2DD7D4EE005C37AC /* local */,
+				08E38F882DD6ADAE005C37AC /* Common */,
 				08E38F542DD69238005C37AC /* sounds */,
 				08E38ED32DD69205005C37AC /* background.mp3 */,
 				08E38ECB2DCABFCB005C37AC /* brainrot */,
@@ -190,6 +227,7 @@
 		08E38ECB2DCABFCB005C37AC /* brainrot */ = {
 			isa = PBXGroup;
 			children = (
+				08E38F922DD7BEF4005C37AC /* Info.plist */,
 				08E38EC72DCABFCB005C37AC /* Preview Content */,
 				08E38EC82DCABFCB005C37AC /* Assets.xcassets */,
 				08E38EC92DCABFCB005C37AC /* brainrotApp.swift */,
@@ -627,6 +665,30 @@
 			path = brainrot/Assets.xcassets/sounds;
 			sourceTree = "<group>";
 		};
+		08E38F882DD6ADAE005C37AC /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				08E38F9B2DD7C4D1005C37AC /* Onboarding.swift */,
+				08E38F912DD6B145005C37AC /* Color.swift */,
+				08E38F902DD6B12A005C37AC /* AppSettings.swift */,
+				08E38F8E2DD6B112005C37AC /* PaywallView.swift */,
+				08E38F8D2DD6B0EF005C37AC /* InterstitialAdsManager.swift */,
+				08E38F8C2DD6B0DD005C37AC /* AdMobBannerView.swift */,
+				08E38F8B2DD6B0CF005C37AC /* UserViewModel.swift */,
+				08E38F8A2DD6B0B7005C37AC /* Constants.swift */,
+				08E38F892DD6ADB8005C37AC /* PurchasesDelegateHandler.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		08E38F9D2DD7D4EE005C37AC /* local */ = {
+			isa = PBXGroup;
+			children = (
+				08E38F9E2DD7D516005C37AC /* Localizable.strings */,
+			);
+			path = local;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -644,6 +706,9 @@
 			);
 			name = brainrot;
 			packageProductDependencies = (
+				08E38F812DD6AD6C005C37AC /* GoogleMobileAds */,
+				08E38F842DD6AD9A005C37AC /* ReceiptParser */,
+				08E38F862DD6AD9A005C37AC /* RevenueCat */,
 			);
 			productName = brainrot;
 			productReference = 08E38EB52DCABFC5005C37AC /* brainrot.app */;
@@ -670,9 +735,21 @@
 			knownRegions = (
 				en,
 				Base,
+				ar,
+				es,
+				ru,
+				it,
+				ja,
+				ko,
+				fr,
+				nl,
 			);
 			mainGroup = 08E38EAC2DCABFC5005C37AC;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				08E38F802DD6AD6C005C37AC /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
+				08E38F832DD6AD9A005C37AC /* XCRemoteSwiftPackageReference "purchases-ios-spm" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 08E38EB62DCABFC5005C37AC /* Products */;
 			projectDirPath = "";
@@ -713,6 +790,7 @@
 				08E38F6C2DD69521005C37AC /* 23m.mp3 in Resources */,
 				08E38F6D2DD69521005C37AC /* 24m.mp3 in Resources */,
 				08E38F6E2DD69521005C37AC /* 25m.mp3 in Resources */,
+				08E38FA02DD7D516005C37AC /* Localizable.strings in Resources */,
 				08E38F6F2DD69521005C37AC /* 26m.mp3 in Resources */,
 				08E38F702DD69521005C37AC /* 27m.mp3 in Resources */,
 				08E38F712DD69521005C37AC /* 28m.mp3 in Resources */,
@@ -743,12 +821,40 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08E38F932DD7C0C0005C37AC /* Constants.swift in Sources */,
+				08E38F942DD7C0C0005C37AC /* UserViewModel.swift in Sources */,
+				08E38F952DD7C0C0005C37AC /* AppSettings.swift in Sources */,
+				08E38F962DD7C0C0005C37AC /* PaywallView.swift in Sources */,
+				08E38F972DD7C0C0005C37AC /* AdMobBannerView.swift in Sources */,
+				08E38F9C2DD7C4D3005C37AC /* Onboarding.swift in Sources */,
+				08E38F982DD7C0C0005C37AC /* Color.swift in Sources */,
+				08E38F992DD7C0C0005C37AC /* PurchasesDelegateHandler.swift in Sources */,
+				08E38F9A2DD7C0C0005C37AC /* InterstitialAdsManager.swift in Sources */,
 				08E38ECC2DCABFCB005C37AC /* brainrotApp.swift in Sources */,
 				08E38ECD2DCABFCB005C37AC /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		08E38F9E2DD7D516005C37AC /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				08E38F9F2DD7D516005C37AC /* en */,
+				08E38FA12DD7D518005C37AC /* ar */,
+				08E38FA22DD7D51B005C37AC /* nl */,
+				08E38FA32DD7D51C005C37AC /* fr */,
+				08E38FA42DD7D51C005C37AC /* ja */,
+				08E38FA52DD7D51D005C37AC /* it */,
+				08E38FA62DD7D51E005C37AC /* ko */,
+				08E38FA72DD7D51E005C37AC /* ru */,
+				08E38FA82DD7D520005C37AC /* es */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		08E38EC12DCABFC6005C37AC /* Debug */ = {
@@ -881,7 +987,7 @@
 				DEVELOPMENT_TEAM = H5U3VZFY2A;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "Italian Brainrot Quiz Soundboard";
+				INFOPLIST_FILE = brainrot/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -912,7 +1018,7 @@
 				DEVELOPMENT_TEAM = H5U3VZFY2A;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "Italian Brainrot Quiz Soundboard";
+				INFOPLIST_FILE = brainrot/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -954,6 +1060,43 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		08E38F802DD6AD6C005C37AC /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
+			requirement = {
+				kind = exactVersion;
+				version = 11.0.1;
+			};
+		};
+		08E38F832DD6AD9A005C37AC /* XCRemoteSwiftPackageReference "purchases-ios-spm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RevenueCat/purchases-ios-spm.git";
+			requirement = {
+				kind = exactVersion;
+				version = 5.20.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		08E38F812DD6AD6C005C37AC /* GoogleMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 08E38F802DD6AD6C005C37AC /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			productName = GoogleMobileAds;
+		};
+		08E38F842DD6AD9A005C37AC /* ReceiptParser */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 08E38F832DD6AD9A005C37AC /* XCRemoteSwiftPackageReference "purchases-ios-spm" */;
+			productName = ReceiptParser;
+		};
+		08E38F862DD6AD9A005C37AC /* RevenueCat */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 08E38F832DD6AD9A005C37AC /* XCRemoteSwiftPackageReference "purchases-ios-spm" */;
+			productName = RevenueCat;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 08E38EAD2DCABFC5005C37AC /* Project object */;
 }
